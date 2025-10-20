@@ -29,7 +29,7 @@ module.exports = {
     // 注意：已删除所有包含 console-browserify 的 configure 配置！
   },
   devServer: {
-    port: 3001, // 你的原有端口配置
+    port: 3000, // 你的原有端口配置
   },
   plugins: [
     // 4. 你的原有 Less 配置（完全不变）

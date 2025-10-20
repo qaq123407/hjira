@@ -29,6 +29,8 @@ export const login = (data: { username: string; password: string }) => {
       // handleUserResponse 会把后端返回的数据中的 user 信息提取出来，并把 token 存到 localStorage，再把 user 返回。
       return handleUserResponse(await response.json());
     } else {
+     
+      return Promise.reject(data);
       return Promise.reject(await response.json());
     }
   });
@@ -45,6 +47,8 @@ export const register = (data: { username: string; password: string }) => {
     if (response.ok) {
       return handleUserResponse(await response.json());
     } else {
+    
+      return Promise.reject(data);
       return Promise.reject(await response.json());
     }
   });

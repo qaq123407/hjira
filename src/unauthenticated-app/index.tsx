@@ -63,4 +63,5 @@ color:rgb(94,108.132);
 
 export const LongButton=styled(Button)`
 width:100%;
+
 `

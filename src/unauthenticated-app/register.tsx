@@ -3,12 +3,13 @@ import {Form ,Input,Button} from 'antd'
 import { useAuth } from "../screens/context/auth-context";
 import { error } from "node:console";
 import { LongButton } from ".";
+
+
 const apiUrl=process.env.REACT_APP_API_URL
 export const RegisterScreen=()=>{
    const {register,user}=useAuth()
     const handleSubmit=(values:{username:string,password:string})=>{
 
-    console.log(values)
      register(values)
     }
     return (<Form onFinish={handleSubmit}>

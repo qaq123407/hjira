@@ -3,11 +3,11 @@ import {Form ,Input,Button} from 'antd'
 import { useAuth } from "../screens/context/auth-context";
 import { LongButton } from ".";
 
+
 const apiUrl=process.env.REACT_APP_API_URL
 export const LoginScreen=()=>{
    const {login,user}=useAuth()
     const handleSubmit=(values:{username:string,password:string})=>{
-      console.log(values)
      login(values)
     }
     return (<Form onFinish={handleSubmit} disabled={false} component="form">
