@@ -34,6 +34,7 @@ export const useAsync = <D>(
       error: null,
     });
 
+
   const setError = (error: Error) =>
     setState({
       error,
@@ -53,8 +54,12 @@ export const useAsync = <D>(
         return data;
       })
       .catch((error) => {
+        //catch会主动消化异常，如果不主动抛出，外层拿不到异常
         setError(error);
-        return error;
+        if (config.throwOnError) {
+          return Promise.reject(error);
+        }
+       
       });
   };
 
