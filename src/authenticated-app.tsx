@@ -7,13 +7,29 @@ import { Row } from "./components/lib";
 import {ReactComponent as SoftwareLogo} from './assets/software-logo.svg'
 import Dropdown from "antd/es/dropdown/dropdown";
 import { Menu } from "antd";
-
+import { Navigate,Route,Routes } from "react-router";
+import { ProjectScreen } from "./screens/project";
+import { BrowserRouter as Router } from "react-router-dom";
 export const AuthenticatedApp =()=>{
-    const {logout,user}=useAuth()
-    console.log(user)
     return <div>
         <Container>
-          <Header between={true}>
+        <PageHeader/>
+          <Main>
+              <Router>
+                  <Routes>
+                     <Route path="/projects" element={<ProjectListScreen/>}></Route>
+                     <Route path={'/projects/:projectId/*'} element={<ProjectScreen/>}></Route>
+                  </Routes>
+              </Router>
+             
+          </Main>
+        </Container>
+    </div>
+}
+const PageHeader=()=>{
+     const {logout,user}=useAuth()
+    
+    return    <Header between={true}>
              <HeaderLeft gap={true}>
                 <SoftwareLogo width={'18rem'} color={'rgb(38.132,255)'} />
                 <h2>用户</h2>
@@ -32,11 +48,6 @@ export const AuthenticatedApp =()=>{
                  </Dropdown>
              </HeaderRight>
           </Header>
-          <Main>
-              <ProjectListScreen/>
-          </Main>
-        </Container>
-    </div>
 }
 
 const Container=styled.div`
