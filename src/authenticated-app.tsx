@@ -6,10 +6,12 @@ import styled from "@emotion/styled";
 import { Row } from "./components/lib";
 import {ReactComponent as SoftwareLogo} from './assets/software-logo.svg'
 import Dropdown from "antd/es/dropdown/dropdown";
-import { Menu } from "antd";
+import { Button, Menu } from "antd";
 import { Navigate,Route,Routes } from "react-router";
 import { ProjectScreen } from "./screens/project";
 import { BrowserRouter as Router } from "react-router-dom";
+import { resetRoute } from "./utils";
+
 export const AuthenticatedApp =()=>{
     return <div>
         <Container>
@@ -19,7 +21,9 @@ export const AuthenticatedApp =()=>{
                   <Routes>
                      <Route path="/projects" element={<ProjectListScreen/>}></Route>
                      <Route path={'/projects/:projectId/*'} element={<ProjectScreen/>}></Route>
+                 <Navigate to={'/projects'}></Navigate>
                   </Routes>
+                  
               </Router>
              
           </Main>
@@ -31,7 +35,10 @@ const PageHeader=()=>{
     
     return    <Header between={true}>
              <HeaderLeft gap={true}>
-                <SoftwareLogo width={'18rem'} color={'rgb(38.132,255)'} />
+                <Button type={'link'} onClick={resetRoute}>
+                    <SoftwareLogo width={'18rem'} color={'rgb(38.132,255)'} />
+                </Button>
+                
                 <h2>用户</h2>
                 <h2>项目</h2>
                 
