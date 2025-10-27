@@ -2758,6 +2758,13 @@
     "@webassemblyjs/ast" "1.14.1"
     "@xtuc/long" "4.2.2"
 
+"@welldone-software/why-did-you-render@^6.2.3":
+  version "6.2.3"
+  resolved "https://registry.npmjs.org/@welldone-software/why-did-you-render/-/why-did-you-render-6.2.3.tgz"
+  integrity sha512-FQgi90jvC9uw2aALlonJfqaWOvU5UUBBVvdAnS2iryXwCc4YJkKsPJY5Y/LzaND3OIyk8XGUn1vTRn6hcem28Q==
+  dependencies:
+    lodash "^4"
+
 "@xobotyi/scrollbar-width@^1.9.5":
   version "1.9.5"
   resolved "https://registry.npmjs.org/@xobotyi/scrollbar-width/-/scrollbar-width-1.9.5.tgz"
@@ -7431,7 +7438,7 @@ lodash.uniq@^4.5.0:
   resolved "https://registry.npmjs.org/lodash.uniq/-/lodash.uniq-4.5.0.tgz"
   integrity sha512-xfBaXQd9ryd9dlSDvnvI0lvxfLJlYAZzXomUYzLKtUeOQvOP5piqAWuGtrhWeqaXK9hhoM/iyJc5AV+XfsX3HQ==
 
-lodash@^4.17.15, lodash@^4.17.20, lodash@^4.17.21, lodash@^4.7.0, lodash@4:
+lodash@^4, lodash@^4.17.15, lodash@^4.17.20, lodash@^4.17.21, lodash@^4.7.0, lodash@4:
   version "4.17.21"
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -9877,7 +9884,7 @@ react-use@^17.6.0:
     ts-easing "^0.2.0"
     tslib "^2.1.0"
 
-react@*, react@^16.0.0, react@^16.14.0, "react@^16.3.0 || ^17.0.0 || ^18.0.0", "react@^16.6.3 || ^17.0.0", "react@^16.8.0 || ^17.0.0", react@<18.0.0, "react@>= 16", react@>=16.0.0, react@>=16.11.0, react@>=16.3.0, react@>=16.8, react@>=16.8.0, react@>=16.9.0:
+react@*, "react@^16 || ^17", react@^16.0.0, react@^16.14.0, "react@^16.3.0 || ^17.0.0 || ^18.0.0", "react@^16.6.3 || ^17.0.0", "react@^16.8.0 || ^17.0.0", react@<18.0.0, "react@>= 16", react@>=16.0.0, react@>=16.11.0, react@>=16.3.0, react@>=16.8, react@>=16.8.0, react@>=16.9.0:
   version "16.14.0"
   resolved "https://registry.npmjs.org/react/-/react-16.14.0.tgz"
   integrity sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==

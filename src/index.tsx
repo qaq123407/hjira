@@ -5,7 +5,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { AppProvides } from './screens/context';
-
+import './wdyr';
 // 使用 jira-dev-tool 的 loadDevTools 函数初始化开发工具
 loadDevTools(() => {
   ReactDOM.render(
