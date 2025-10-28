@@ -9,15 +9,17 @@ import styled from "@emotion/styled"
 import { Typography } from "antd"
 import { useAsync } from "../../utils/use-async"
 import { Project } from "./list"
-import { useProject } from "../../utils/project"
 import { useUsers } from "../../utils/user"
 import { Helmet } from "react-helmet"
 import { useUrlQueryParam } from "../../utils/url"
 import { useProjectSearchParams } from "./util"
+import { useProjects } from "../../utils/project"
 const apiUrl=process.env.REACT_APP_API_URL
 export const ProjectListScreen =()=>{
 const [param,setParam]=useProjectSearchParams()
-const {isLoading,error,data:list}=useProject(useDebounce(param,200))
+const { isLoading, error, data: list, retry } = useProjects(
+    useDebounce(param, 200)
+  );
 const {data:users}=useUsers()
  useDocumentTitle("项目列表")
     return<Container>
@@ -27,7 +29,12 @@ const {data:users}=useUsers()
        {error?<Typography.Text type={'danger'}>
         {error.message}
         </Typography.Text>:null}      
-      <List users={users||[]} dataSource={list||[]} loading={isLoading}/>
+      <List
+        refresh={retry}
+        loading={isLoading}
+        users={users || []}
+        dataSource={list || []}
+      />
     </Container>
 }
 ProjectListScreen.whyDidYouRender=true;
