@@ -3,6 +3,7 @@ import { logout } from '../auth-provider';
 import * as auth from "../auth-provider";
 import { useAuth } from '../screens/context/auth-context';
 import { config } from 'node:process';
+import { useCallback } from 'react';
 const apiUrl = process.env.REACT_APP_API_URL;
 
 interface Config extends RequestInit {
@@ -50,6 +51,9 @@ export const http = async (
 export const useHttp = () => {
   const { user } = useAuth();
   // TODO 讲解 TS 操作符
-  return (...[endpoint, config]: Parameters<typeof http>) =>
-    http(endpoint, { ...config, token: user?.token });
+  return useCallback(
+    (...[endpoint, config]: Parameters<typeof http>) =>
+      http(endpoint, { ...config, token: user?.token }),
+    [user?.token]
+  );
 };
