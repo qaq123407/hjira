@@ -16,9 +16,7 @@ import { useProjectSearchParams } from "./util"
 import { useProjects } from "../../utils/project"
 import {Row} from "../../components/lib"
 const apiUrl=process.env.REACT_APP_API_URL
-export const ProjectListScreen = (props: {
-  setProjectModalOpen: (isOpen: boolean) => void;
-}) => {
+export const ProjectListScreen = (props: { projectButton: JSX.Element }) => {
 const [param,setParam]=useProjectSearchParams()
 const { isLoading, error, data: list, retry } = useProjects(
     useDebounce(param, 200)
@@ -28,9 +26,7 @@ const {data:users}=useUsers()
     return<Container>
          <Row between={true}>
         <h1>项目列表</h1>
-        <Button onClick={() => props.setProjectModalOpen(true)}>
-          创建项目
-        </Button>
+        {props.projectButton}
       </Row>
         
         <SearchPanel users={users||[]} param={param} setParam={setParam}/>
@@ -38,7 +34,7 @@ const {data:users}=useUsers()
         {error.message}
         </Typography.Text>:null}      
       <List
-         setProjectModalOpen={props.setProjectModalOpen}
+         projectButton={props.projectButton}
         refresh={retry}
         loading={isLoading}
         users={users || []}

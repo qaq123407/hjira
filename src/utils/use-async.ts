@@ -82,7 +82,8 @@ const setError = useCallback(
           return error;
         });
     },
-    [config.throwOnError, safeDispatch, setData, setError]
+    [config.throwOnError, safeDispatch
+      , setData, setError]
   );
   return {
     isIdle: state.stat === "idle",
