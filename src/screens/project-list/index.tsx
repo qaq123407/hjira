@@ -14,19 +14,30 @@ import { Helmet } from "react-helmet"
 import { useUrlQueryParam } from "../../utils/url"
 import { useProjectSearchParams } from "./util"
 import { useProjects } from "../../utils/project"
-import {Row} from "../../components/lib"
+import { useDispatch } from "react-redux"
+import {store} from "../../store"
+import { projectListActions } from "./project-list.slice"
+import {ButtonNoPadding ,Row } from "../../components/lib"
 const apiUrl=process.env.REACT_APP_API_URL
-export const ProjectListScreen = (props: { projectButton: JSX.Element }) => {
+export const ProjectListScreen = () => {
+  useDocumentTitle("项目列表",false)
 const [param,setParam]=useProjectSearchParams()
 const { isLoading, error, data: list, retry } = useProjects(
     useDebounce(param, 200)
   );
 const {data:users}=useUsers()
- useDocumentTitle("项目列表")
+const dispatch = useDispatch();
+  console.log(store.getState());
+ 
     return<Container>
          <Row between={true}>
         <h1>项目列表</h1>
-        {props.projectButton}
+       <ButtonNoPadding
+          onClick={() => dispatch(projectListActions.openProjectModal())}
+          type={"link"}
+        >
+          创建项目
+        </ButtonNoPadding>
       </Row>
         
         <SearchPanel users={users||[]} param={param} setParam={setParam}/>
@@ -34,7 +45,6 @@ const {data:users}=useUsers()
         {error.message}
         </Typography.Text>:null}      
       <List
-         projectButton={props.projectButton}
         refresh={retry}
         loading={isLoading}
         users={users || []}
