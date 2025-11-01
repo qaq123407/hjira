@@ -44,6 +44,8 @@ export const AuthenticatedApp =()=>{
                     </ButtonNoPadding>
                   }
                 />
+                }
+                />
                      <Route path={'/projects/:projectId/*'} element={<ProjectScreen/>}></Route>
                  <Navigate to={'/projects'}></Navigate>
                   </Routes>
