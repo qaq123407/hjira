@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { useUrlQueryParam } from "../../utils/url";
 import { useProject } from "../../utils/project";
 import { useSearchParams } from "react-router-dom";
+import { useSetUrlSearchParam } from "../../utils/url";
 export const useProjectSearchParams=()=>{
    const [param,setParam]=useUrlQueryParam(['name','personId'])
    return [
@@ -19,7 +20,7 @@ export const useProjectModal = () => {
  const [{ editingProjectId }, setEditingProjectId] = useUrlQueryParam([
     "editingProjectId",
   ]);
-  const [_, setUrlParams] = useSearchParams();
+ const setUrlParams = useSetUrlSearchParam();
   const { data: editingProject, isLoading } = useProject(
     Number(editingProjectId)
   );
