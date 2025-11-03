@@ -16,8 +16,7 @@ import { ProjectPopover } from "./components/project-popover";
 
 export const AuthenticatedApp =()=>{
     
-    return 
-        <Container>
+    return    <Container>
         <PageHeader />
           <Main>
               <Router>

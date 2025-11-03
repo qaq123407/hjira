@@ -3,12 +3,13 @@ import {Form ,Input,Button} from 'antd'
 import { useAuth } from "../screens/context/auth-context";
 import { LongButton } from ".";
 import { useAsync } from "../utils/use-async";
-
+import { useDispatch } from "react-redux";
 
 const apiUrl=process.env.REACT_APP_API_URL
 export const LoginScreen=({onError}:{onError:(error:Error)=>void})=>{
    const {login,user}=useAuth()
    const {run,isLoading,}=useAsync(undefined,{throwOnError:true})
+    const dispatch = useDispatch();
     const handleSubmit=async (values:{username:string,password:string})=>{
       try {
       await run (login(values)) 
