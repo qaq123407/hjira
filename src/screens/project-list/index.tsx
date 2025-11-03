@@ -12,28 +12,29 @@ import { Project } from "./list"
 import { useUsers } from "../../utils/user"
 import { Helmet } from "react-helmet"
 import { useUrlQueryParam } from "../../utils/url"
-import { useProjectSearchParams } from "./util"
+import { useProjectSearchParams , useProjectModal } from "./util"
 import { useProjects } from "../../utils/project"
 import { useDispatch } from "react-redux"
 import {store} from "../../store"
 import { projectListActions } from "./project-list.slice"
 import {ButtonNoPadding ,Row } from "../../components/lib"
+
+
 const apiUrl=process.env.REACT_APP_API_URL
 export const ProjectListScreen = () => {
   useDocumentTitle("项目列表",false)
+  const { open } = useProjectModal();
 const [param,setParam]=useProjectSearchParams()
 const { isLoading, error, data: list, retry } = useProjects(
     useDebounce(param, 200)
   );
 const {data:users}=useUsers()
-const dispatch = useDispatch();
-  console.log(store.getState());
  
     return<Container>
          <Row between={true}>
         <h1>项目列表</h1>
        <ButtonNoPadding
-          onClick={() => dispatch(projectListActions.openProjectModal())}
+          onClick={open}
           type={"link"}
         >
           创建项目

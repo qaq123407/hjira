@@ -16,25 +16,27 @@ import { ProjectPopover } from "./components/project-popover";
 
 export const AuthenticatedApp =()=>{
     
-    return  <Container>
+    return (  <Container>
+        <Router>
         <PageHeader />
           <Main>
-              <Router>
+            
                   <Routes>
                     <Route path={"/projects"} element={<ProjectListScreen />} />
                      <Route path={'/projects/:projectId/*'} element={<ProjectScreen/>}></Route>
                  <Navigate to={'/projects'}></Navigate>
                   </Routes>
                   
-              </Router>
+             
              
           </Main>
           <ProjectModal />
+        </Router>
         </Container>
-    
+    )
 }
 const PageHeader = () => {
-    return    <Header between={true}>
+    return (   <Header between={true}>
              <HeaderLeft gap={true}>
                 <ButtonNoPadding type={'link'} onClick={resetRoute}>
                     <SoftwareLogo width={'18rem'} color={'rgb(38.132,255)'} />
@@ -47,6 +49,7 @@ const PageHeader = () => {
                 <User/>
              </HeaderRight>
           </Header>
+    )
 }
 const User = () => {
   const { logout, user } = useAuth();

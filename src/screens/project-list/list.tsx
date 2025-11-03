@@ -1,14 +1,10 @@
 import React from "react";
 import {User} from "./search-panel";
-import { TableProps } from "antd";
-import {Dropdown,Menu,Table} from "antd";
+import { Table, TableProps } from "antd";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import {Pin} from "../../components/pin";
-import { ButtonNoPadding } from "../../components/lib";
 import { useEditProject } from "../../utils/project";
-import { useDispatch } from "react-redux";
-import { projectListActions } from "./project-list.slice";
 export interface Project{
     id:number;
     name:string;
@@ -20,14 +16,14 @@ export interface Project{
 }
 interface ListProps extends TableProps<Project>{
     users:User[],
-    refresh?:()=>void;  
+    loading?: boolean,
+    refresh?:()=>void
 }
-
+type PropsType=Omit<ListProps,'users'>
 export const List =({users, loading, ...props}:ListProps)=>{
     const {mutate}=useEditProject()
-     const dispatch = useDispatch();
     const pinProject=(id:number)=> (pin:boolean)=>{
-        mutate({id,pin}).then(props.refresh)
+        mutate({id,pin})
     }
     return <Table  loading={loading}  pagination={false} 
     columns={[
@@ -68,31 +64,7 @@ export const List =({users, loading, ...props}:ListProps)=>{
                     {project.created?dayjs(project.created).format('YYYY-MM-DD'):'无'}
                 </span>
             }
-           },
-            {
-          render(value, project) {
-            return (
-              <Dropdown
-                overlay={
-                  <Menu>
-                     <Menu.Item key={"edit"}>
-                      <ButtonNoPadding
-                        onClick={() =>
-                          dispatch(projectListActions.openProjectModal())
-                        }
-                        type={"link"}
-                      >
-                        编辑
-                      </ButtonNoPadding>
-                    </Menu.Item>
-                  </Menu>
-                }
-              >
-                <ButtonNoPadding type={"link"}>...</ButtonNoPadding>
-              </Dropdown>
-            );
-          },
-        },
+           }
     ]} 
     {...props
     }/>
