@@ -25,7 +25,10 @@ const { mutateAsync, error, isLoading: mutateLoading } = useMutateProject(
       close();
     });
   };
-
+ const closeModal=()=>{
+    form.resetFields();
+    close();
+ }
   const title = editingProject ? "编辑项目" : "创建项目";
 
   useEffect(() => {
@@ -35,7 +38,7 @@ const { mutateAsync, error, isLoading: mutateLoading } = useMutateProject(
   return (
    <Drawer
       forceRender={true}
-      onClose={close}
+      onClose={closeModal}
       visible={projectModalOpen}
       width={"100%"}
     >
