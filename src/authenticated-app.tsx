@@ -7,7 +7,7 @@ import {ButtonNoPadding ,Row } from "./components/lib";
 import {ReactComponent as SoftwareLogo} from './assets/software-logo.svg'
 import Dropdown from "antd/es/dropdown/dropdown";
 import { Button, Menu } from "antd";
-import { Navigate,Route,Routes } from "react-router";
+import { Navigate,Route,Routes } from "react-router-dom";
 import { ProjectScreen } from "./screens/project";
 import { BrowserRouter as Router } from "react-router-dom";
 import { resetRoute } from "./utils";
@@ -23,8 +23,8 @@ export const AuthenticatedApp =()=>{
             
                   <Routes>
                     <Route path={"/projects"} element={<ProjectListScreen />} />
-                     <Route path={'/projects/:projectId/*'} element={<ProjectScreen/>}></Route>
-                 <Navigate to={'/projects'}></Navigate>
+                    <Route path={'/projects/:projectId/*'} element={<ProjectScreen/>}></Route>
+                    <Route path="*" element={<Navigate to={'/projects'} />} />
                   </Routes>
                   
              

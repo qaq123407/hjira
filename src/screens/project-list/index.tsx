@@ -2,7 +2,7 @@ import React from "react"
 import { SearchPanel } from "./search-panel"
 import { List } from "./list"
 import { useEffect } from "react"
-import { cleanObject,useDebounce,useDocumentTitle,useMount } from "../../utils"
+import { useDebounce,useDocumentTitle } from "../../utils"
 import * as qs from "qs"
 import { useHttp } from "../../utils/http"
 import styled from "@emotion/styled"
@@ -17,7 +17,7 @@ import { useProjects } from "../../utils/project"
 import { useDispatch } from "react-redux"
 import {store} from "../../store"
 import { projectListActions } from "./project-list.slice"
-import {ButtonNoPadding ,Row } from "../../components/lib"
+import {ButtonNoPadding ,Row ,ErrorBox} from "../../components/lib"
 
 
 const apiUrl=process.env.REACT_APP_API_URL
@@ -25,9 +25,7 @@ export const ProjectListScreen = () => {
   useDocumentTitle("项目列表",false)
   const { open } = useProjectModal();
 const [param,setParam]=useProjectSearchParams()
-const { isLoading, error, data: list, retry } = useProjects(
-    useDebounce(param, 200)
-  );
+  const { isLoading, error, data: list } = useProjects(useDebounce(param, 200));
 const {data:users}=useUsers()
  
     return<Container>
@@ -42,15 +40,8 @@ const {data:users}=useUsers()
       </Row>
         
         <SearchPanel users={users||[]} param={param} setParam={setParam}/>
-       {error?<Typography.Text type={'danger'}>
-        {error.message}
-        </Typography.Text>:null}      
-      <List
-        refresh={retry}
-        loading={isLoading}
-        users={users || []}
-        dataSource={list || []}
-      />
+        <ErrorBox error={error}/>
+        <List loading={isLoading} users={users || []} dataSource={list || []} />
     </Container>
 }
 ProjectListScreen.whyDidYouRender=true;

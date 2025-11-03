@@ -17,14 +17,14 @@ module.exports = {
           resource.request = resource.request.replace(/^node:/, '');
         }
       ),
-      // 3. 核心：用自定义空模块替代 console 模块（无需任何额外依赖）
-      new NormalModuleReplacementPlugin(
-        /^console$/, // 精准匹配 "console" 模块请求
-        (resource) => {
-          // 指向 src 目录下的 empty-console.js（你之前已创建）
-          resource.request = path.resolve(__dirname, "src/empty-console.js");
-        }
-      ),
+      // 3. 注释掉console模块替换，因为它会影响jira-dev-tool的正常运行
+      // new NormalModuleReplacementPlugin(
+      //   /^console$/, // 精准匹配 "console" 模块请求
+      //   (resource) => {
+      //     // 指向 src 目录下的 empty-console.js（你之前已创建）
+      //     resource.request = path.resolve(__dirname, "src/empty-console.js");
+      //   }
+      // ),
     ],
     // 注意：已删除所有包含 console-browserify 的 configure 配置！
   },
