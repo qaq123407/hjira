@@ -7,9 +7,8 @@ import {ButtonNoPadding ,Row } from "./components/lib";
 import {ReactComponent as SoftwareLogo} from './assets/software-logo.svg'
 import Dropdown from "antd/es/dropdown/dropdown";
 import { Button, Menu } from "antd";
-import { Navigate,Route,Routes } from "react-router-dom";
+import { Navigate,Route,Routes,BrowserRouter } from "react-router-dom";
 import { ProjectScreen } from "./screens/project";
-import { BrowserRouter as Router } from "react-router-dom";
 import { resetRoute } from "./utils";
 import { ProjectModal } from "./screens/project-list/project-modal";
 import { ProjectPopover } from "./components/project-popover";
@@ -17,22 +16,20 @@ import { ProjectPopover } from "./components/project-popover";
 export const AuthenticatedApp =()=>{
     
     return (  <Container>
-        <Router>
+      
+      <BrowserRouter>
         <PageHeader />
-          <Main>
-            
-                  <Routes>
-                    <Route path={"/projects"} element={<ProjectListScreen />} />
-                    <Route path={'/projects/:projectId/*'} element={<ProjectScreen/>}></Route>
-                    <Route path="*" element={<Navigate to={'/projects'} />} />
-                  </Routes>
-                  
-             
-             
-          </Main>
-          <ProjectModal />
-        </Router>
-        </Container>
+        <Main>
+          <Routes>
+            <Route path="/projects" element={<ProjectListScreen />} />
+            <Route path="/projects/:projectId/*" element={<ProjectScreen />} />
+            <Route path="*" element={<Navigate to="/projects" />} />
+          </Routes>
+        </Main>
+      
+        <ProjectModal />
+      </BrowserRouter>
+    </Container>
     )
 }
 const PageHeader = () => {
@@ -101,5 +98,9 @@ const HeaderRight=styled.div`
 `;
 
 
-const Main=styled.main`grid-area:main`
+const Main=styled.main`
+grid-area:main;
+display:flex;
+overflow:hidden;
+`;
 const HeaderItem=styled.h3`margin-right:3rem;`
