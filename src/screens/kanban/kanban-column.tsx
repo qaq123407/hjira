@@ -1,7 +1,9 @@
 import React from "react";
 import { Kanban } from "../../types/kanban";
 import { useTasksInProject } from "../kanban/utils";
-
+import { useTaskTypes } from "../../utils/task-type";
+import taskIcom from "../../assets/task.svg";
+import bugIcon from "../../assets/bug.svg";
 export const KanbanColumn = ({ kanban }: { kanban: Kanban }) => {
   const { data: allTasks } = useTasksInProject();
   const tasks = allTasks?.filter((task) => task.kanbanId === kanban.id);
