@@ -1,7 +1,7 @@
 import { useHttp } from "./http";
 import { useQuery, useMutation, QueryKey  } from "react-query";
 import { Kanban } from "../types/kanban";
-import { useAddConfig, useDeleteConfig ,useReorderConfig} from "../utils/use-optimistic-options";
+import { useAddConfig, useDeleteConfig ,useReorderKanbanConfig} from "../utils/use-optimistic-options";
 export const useKanbans = (param?: Partial<Kanban>) => {
   const client = useHttp();
 
@@ -52,5 +52,5 @@ export const useReorderKanban = (queryKey: QueryKey) => {
       data: params,
       method: "POST",
     });
-  }, useReorderConfig(queryKey));
+  }, useReorderKanbanConfig(queryKey));
 };
