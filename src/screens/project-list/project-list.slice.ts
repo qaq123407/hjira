@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AppDispatch, RootState } from "../../store";
-import { Project} from "./list";
+import { Project} from "../../types/project";
 import { User } from "./search-panel"; 
 
 interface State {

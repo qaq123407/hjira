@@ -9,15 +9,7 @@ import { useEditProject } from "../../utils/project";
 import { ButtonNoPadding } from "../../components/lib";
 import { useDeleteProject } from "../../utils/project";
 import { useProjectModal,useProjectsQueryKey } from "./util";
-export interface Project{
-    id:number;
-    name:string;
-    personId:number;
-    pin:boolean;
-    organization:string;
-    created:number;
-
-}
+import { Project } from "../../types/project";
 interface ListProps extends TableProps<Project>{
     users:User[],
     loading?: boolean,

@@ -3,7 +3,7 @@ import React from "react"
 import { Select ,Input } from "antd";
 import FormItem from "antd/es/form/FormItem";
 import {Form} from "antd";
-import { Project } from "./list";
+import { Project } from "../../types/project";
 import { UserSelect } from "../../components/user.select";
 export interface User{
    id:number;
